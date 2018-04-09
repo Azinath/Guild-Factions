@@ -1,0 +1,15 @@
+## Interface: 70300
+## Title: Guild Factions
+## Version: 0.0.2
+## Notes: Allows the creation of custom guild reputation factions.
+## Dependencies:
+## SavedVariablesPerCharacter: GF_Config, GF_FactionData, GF_GuildFactions, GF_PublicNotes
+## SavedVariables:
+
+gf_hitlist.xml
+gf.xml
+gf_config.xml
+gf_icons.xml
+gf_faction_view.xml
+gf_faction_details.xml
+ChatThrottleLib.lua

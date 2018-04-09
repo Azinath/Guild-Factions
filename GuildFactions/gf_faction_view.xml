@@ -1,0 +1,439 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+    <Frame name="GF_FactionViewFrame" parent="GF_HitListFrame" setallpoints="true" hidden="true">          
+        <Frames>  
+            <ScrollFrame name="GF_FactionScrollFrame" inherits="FauxScrollFrameTemplate">
+                <Size>
+                    <AbsDimension x="295" y="235"/>
+                </Size>
+                <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="-95"/>
+                </Offset>
+            </Anchor>
+        </Anchors>    
+                <Scripts>                    
+                    <OnVerticalScroll>
+                        FauxScrollFrame_OnVerticalScroll(self, offset, 17, GF_FactionFrameUpdate); 
+                    </OnVerticalScroll>                        
+                </Scripts>
+            </ScrollFrame>       
+           
+            <Button name="GF_FactionColumnHeaderGuildie" text="Guild Member" inherits="GF_ColumnButtonTemplate">     
+                <Size>
+                    <AbsDimension x="150" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="20" y="-70"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>      
+                <Scripts>					
+                    <OnClick>  
+                        GF_SORT_FACTION_GUILDIE = not GF_SORT_FACTION_GUILDIE;                    
+                        table.sort(GF_GuildFactionData,GF_FactionSortByGuildie);                    
+                        GF_FactionFrameUpdate();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="GF_FactionColumnHeaderReputation" text="Reputation" inherits="GF_ColumnButtonTemplate">    
+                <Size>
+                    <AbsDimension x="161" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="169" y="-70"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>      
+                <Scripts>					
+                    <OnClick>                        
+                        GF_SORT_FACTION_REP = not GF_SORT_FACTION_REP;
+                        table.sort(GF_GuildFactionData, GF_FactionSortByReputation);               
+                        GF_FactionFrameUpdate();
+                    </OnClick>
+                </Scripts>
+            </Button>  
+        </Frames>
+    </Frame>  
+    
+    <Button name="GF_FactionEntryTemplate" virtual="true" hidden="true">
+		<Size>
+            <AbsDimension x="300" y="16" />
+        </Size>	
+        <Scripts>
+            <OnLoad>
+                self.index = 0;
+            </OnLoad>
+            <OnClick>
+                GF_FactionEntryOnClick(self)
+            </OnClick>
+        </Scripts>
+		<Frames>
+			<Frame>
+				<Size>
+                    <AbsDimension x="120" y="16" />
+                </Size>
+				<Anchors>
+                    <Anchor point="LEFT">
+                        <Offset>
+                            <AbsDimension x="10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parent_GuildieName" inherits="GameFontNormalSmall" justifyh="LEFT">
+                            <Size><AbsDimension x="105" y="16" /></Size>
+							<Anchors><Anchor point="LEFT"><Offset><AbsDimension y="1" x="10"/></Offset></Anchor></Anchors>
+						</FontString>
+                        <FontString name="$parent_Reputation" inherits="GameFontNormalSmall" justifyH="LEFT">
+                            <Size><AbsDimension x="117" y="16" /></Size>	
+                            <Anchors><Anchor point="LEFT"><Offset><AbsDimension x="160" y="0"/></Offset></Anchor></Anchors>                            
+                        </FontString> 
+					</Layer>
+				</Layers>				
+			</Frame>    
+                    	
+			<Frame>
+				<Size><AbsDimension x="240" y="16" /></Size>
+				<Anchors><Anchor point="LEFT"><Offset><AbsDimension x="167" y="0"/></Offset></Anchor></Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parent_EntryText" inherits="GameFontHighlightSmall" justifyH="LEFT"/>
+					</Layer>
+				</Layers>
+			</Frame>			
+			<Frame>
+				<Size><AbsDimension x="120" y="16" /></Size>
+				<Anchors><Anchor point="LEFT"><Offset><AbsDimension x="440" y="0"/></Offset></Anchor></Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parent_StackPrice" inherits="GameFontHighlightSmall" justifyH="RIGHT"/>
+					</Layer>
+				</Layers>
+			</Frame>			
+		</Frames>		
+		<HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD">
+			<TexCoords left="0.035" right="0.04" top="0.2" bottom="0.25"/>
+		</HighlightTexture>		
+	</Button> 
+    
+    <!-- Faction Control Panel -->
+    <Frame name="GF_FactionDetails" parent="GF_FactionViewFrame" setallpoints="true">
+        <Size>
+            <AbsDimension x="320" y="44" />
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMLEFT"><Offset><AbsDimension x="25" y="125"/></Offset></Anchor>               
+        </Anchors>        
+        <Layers>
+            <Layer>
+                <FontString name="$parent_string1" text="Guild Faction" inherits="GameFontNormalSmall" justifyH="LEFT">
+                    <Anchors><Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor></Anchors>
+                    <Size><AbsDimension x="160" y="16" /></Size>	
+                </FontString>    
+                <!--<FontString name="$parent_string2" text="Reputation" inherits="GameFontNormalSmall" justifyH="LEFT">
+                    <Anchors><Anchor point="TOPLEFT"><Offset><AbsDimension x="150" y="0"/></Offset></Anchor></Anchors>
+                    <Size><AbsDimension x="160" y="16" /></Size>	
+                </FontString>-->
+            </Layer>
+        </Layers> 
+        <Frames>        
+        <Button name="GF_FactionSelectMenu" inherits="UIDropDownMenuTemplate" text="Faction" frameStrata="DIALOG_FULLSCREEN" parent="GF_FactionDetails">            
+            <Size>
+                <AbsDimension x="100" y="0" />
+            </Size>
+            <Anchors>
+                <Anchor point="TOPRIGHT">
+                    <Offset>
+                        <AbsDimension x="-50" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Scripts>
+                <OnLoad>
+                    UIDropDownMenu_SetWidth(self, 130);
+                    UIDropDownMenu_Initialize(self,GF_FactionSelectDropDownOnLoad);
+                </OnLoad>
+            </Scripts>
+        </Button>
+        <Frame name="GF_FactionDropDownFrame" inherits="UIDropDownMenuTemplate" frameStrata="DIALOG_FULLSCREEN">
+            <Scripts>
+                <OnLoad>
+                    UIDropDownMenu_Initialize(self,GF_FactionSelectDropDownOnLoad);
+                </OnLoad>
+            </Scripts>
+        </Frame>        
+        <Button name="GF_FactionRepMenu" inherits="UIDropDownMenuTemplate" text="Faction" frameStrata="HIGH" level="1" parent="GF_FactionDetails">
+            <Anchors>
+                <Anchor point="TOPLEFT">
+                    <Offset>
+                        <AbsDimension x="-34" y="-32"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Scripts>
+                <OnLoad>
+                    UIDropDownMenu_SetWidth(self, 100);
+                    GF_FactionRepDropDownOnLoad(self);
+                </OnLoad>
+            </Scripts>
+        </Button>
+        <Frame name="GF_FactionRepDropDownFrame" inherits="UIDropDownMenuTemplate" frameStrata="DIALOG_FULLSCREEN">
+            <Scripts>
+                <OnLoad>
+                    GF_FactionRepDropDownOnLoad(self);
+                </OnLoad>
+            </Scripts>
+            <Layers>
+                <Layer level="BORDER" >
+                    <Texture name="$parentTexture" file="interface/chatframe/UI-ChatInputBorder.png">  
+                        <Size>
+                            <AbsDimension x="50" y="0" />
+                        </Size>
+                        <Anchors>
+                            <Anchor point="LEFT">                                    
+                                <Offset>
+                                    <AbsDimension x="-5" y="0" />
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </Texture>                 			
+                </Layer>
+            </Layers>
+        </Frame>        
+        <Button name="GF_SetRepApplyToMenu" inherits="UIDropDownMenuTemplate" text="Apply To" frameStrata="HIGH" level="1" parent="GF_FactionDetails">
+            <Anchors>
+                <Anchor point="LEFT" relativeTo="GF_FactionRepMenu" relativePoint="RIGHT">
+                    <Offset>
+                        <AbsDimension x="45" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Scripts>
+                <OnLoad>
+                    UIDropDownMenu_Initialize(self,GF_SetRepApplyToDropDownOnLoad);
+                </OnLoad>
+            </Scripts>
+        </Button>
+        <Frame name="GF_SetRepApplyToDropDownFrame" inherits="UIDropDownMenuTemplate">
+            <Scripts>
+                <OnLoad>
+                    UIDropDownMenu_Initialize(self,GF_SetRepApplyToDropDownOnLoad);
+                </OnLoad>
+            </Scripts>
+        </Frame>
+        <EditBox name="GF_ReputationEditBox" id="1" letters="6" inherits="FactionEditBoxTemplate" frameStrata="DIALOG" level="2">             
+            <FontString name="$parentText" inherits="SystemFont_Tiny" text="0"/>	
+            <Size>
+                <AbsDimension x="30" y="20" />
+            </Size>
+            <Anchors>
+                <Anchor point="LEFT" relativeTo="GF_FactionRepMenu" relativePoint="RIGHT">
+                    <Offset>
+                        <AbsDimension x="10" y="3"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Layers>
+                <Layer level="BORDER" >
+                    <Texture name="$parentTexture" file="interface/common/common-input-border">  
+                        <Size>
+                            <AbsDimension x="36" y="30" />
+                        </Size>
+                        <Anchors>
+                            <Anchor point="LEFT">                                    
+                                <Offset>
+                                    <AbsDimension x="-2" y="-5" />
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </Texture>                 			
+                </Layer>                    
+            </Layers>
+            <Scripts>
+                <OnEscapePressed>
+                    self:ClearFocus();
+                </OnEscapePressed>
+                <OnEditFocusGained>
+                    --FriendlistCharFramePg1NameBox_OnNameBoxFocus()
+                </OnEditFocusGained>
+            </Scripts>
+        </EditBox>  
+        <Button name="RepBoxDecrementButton" frameStrata="DIALOG" level="2">
+			<Size>
+				<AbsDimension x="23" y="22"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="GF_ReputationEditBox" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="-19" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					GF_RepBoxDecrement_OnClick();		
+                    GF_ReputationEditBox:ClearFocus();
+				</OnClick>
+			</Scripts>
+			<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+            <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+			<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+			<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+        </Button>
+        <Button name="RepBoxIncrementButton" frameStrata="DIALOG" level="2">
+			<Size>
+				<AbsDimension x="23" y="22"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="GF_ReputationEditBox" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="-2" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					GF_RepBoxIncrement_OnClick();
+                    GF_ReputationEditBox:ClearFocus();
+				</OnClick>
+			</Scripts>
+			<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+            <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+			<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+			<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+        </Button>
+        <Button name="GF_AddFactionBtn" text="+" inherits="UIPanelButtonTemplate" frameStrata="DIALOG" level="2">
+            <Anchors>
+                <Anchor point="RIGHT" relativeTo="GF_SetRepApplyToMenu" relativePoint="LEFT">
+                    <Offset>
+                        <!-- <AbsDimension x="220" y="-15"/> -->
+                        <AbsDimension x="38" y="2"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Size x="16" y="16" />
+            <Scripts>					
+                <OnClick>
+                    GF_FactionDetailsAddRep();
+                </OnClick>
+            </Scripts>
+        </Button>
+        <Button name="GF_SubFactionBtn" text="-" inherits="UIPanelButtonTemplate" frameStrata="DIALOG" level="2">
+            <Anchors>
+                <Anchor point="LEFT" relativeTo="GF_AddFactionBtn" relativePoint="RIGHT">
+                    <Offset>
+                        <AbsDimension x="0" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Size x="16" y="16" />
+            <Scripts>					
+                <OnClick>
+                    GF_FactionDetailsSubRep();
+                </OnClick>
+            </Scripts>
+        </Button>
+        <Button name="GF_SetFactionBtn" text="=" inherits="UIPanelButtonTemplate" frameStrata="DIALOG" level="2">
+            <Anchors>
+                <Anchor point="LEFT" relativeTo="GF_SubFactionBtn" relativePoint="RIGHT">
+                    <Offset>
+                        <AbsDimension x="0" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+            <Size x="16" y="16" />
+            <Scripts>					
+                <OnClick>
+                    GF_FactionDetailsSubRep();
+                </OnClick>
+            </Scripts>
+        </Button>         
+        <Button name="GF_FactionDetailsToggle" parent="GF_FactionDetails">
+            <Size x="16" y="16" />
+            <Layers>
+                <Layer level="OVERLAY">
+                    <Texture name="$parentIcon" file="Interface/BUTTONS/UI-GuildButton-PublicNote-Up.png" setAllPoint="true" />
+                </Layer>
+            </Layers>
+            <Scripts>            
+                <OnEnter>                
+                    GF_EnterFactionDetailsButton()
+                </OnEnter>
+                <OnLeave>
+                    GF_LeaveFactionDetailsButton()
+                </OnLeave>
+                <OnClick>
+                    GF_ToggleFactionDetails()
+                </OnClick>
+            </Scripts>
+            <Anchors>
+                <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relativeTo="GF_FactionDetails" >
+                    <Offset>
+                        <AbsDimension x="-16" y="0" />
+                    </Offset>
+                </Anchor>
+            </Anchors>        
+        </Button>
+        </Frames>
+    </Frame>
+    <EditBox name="FactionEditBoxTemplate" letters="100" multiLine="false" enableMouse="true" autoFocus="false" virtual="true">
+		<!-- <Backdrop name="$parentBackdrop" bgFile="Interface\AddOns\flagRSP\BackDrop" tile="true"/> -->
+            <Scripts>
+                <OnShow>
+                    --self:SetTextColor(0,0,0);
+                    --local dummyFrame = getglobal(self:GetName() .. "DummyFrame");
+
+                    --if dummyFrame ~= nil then
+                    --    dummyFrame:SetAlpha(0.05);
+                    --end
+                </OnShow>
+                <OnEnter>
+                    --dummyFrame = getglobal(self:GetName() .. "DummyFrame");
+
+                    --if dummyFrame ~= nil then
+                    --    dummyFrame:SetAlpha(0.2);
+                    --end
+                </OnEnter>
+                <OnLeave>
+                    --local dummyFrame = getglobal(self:GetName() .. "DummyFrame");
+
+                    --if dummyFrame ~= nil then
+                    --    dummyFrame:SetAlpha(0.05);
+                    --end
+                </OnLeave>
+                <OnTextChanged>
+                    --ScrollingEdit_OnTextChanged(SendMailScrollFrame);
+                </OnTextChanged>
+                <OnCursorChanged>
+                    --ScrollingEdit_OnCursorChanged(arg1, arg2-10, arg3, arg4);
+                </OnCursorChanged>
+                <OnUpdate>
+                    --ScrollingEdit_OnUpdate(SendMailScrollFrame);
+                </OnUpdate>
+                <OnTabPressed>
+                    --if ( IsShiftKeyDown() ) then
+                        --SendMailSubjectEditBox:SetFocus();
+                    --else
+                        --SendMailMoneyGold:SetFocus();
+                    --end
+                    --Friendlist:editBoxTabHandler(self:GetName(), IsShiftKeyDown());
+                </OnTabPressed>
+                <OnEnterPressed>
+                    --Friendlist:editBoxTabHandler(self:GetName(), false);
+                </OnEnterPressed>
+                <OnEscapePressed>
+                    self:ClearFocus();
+                </OnEscapePressed>
+            </Scripts>
+        </EditBox>
+ </Ui>
+ 
+   
+	
+	

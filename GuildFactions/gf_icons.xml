@@ -1,0 +1,59 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+
+    <Button name="ListButton" parent="GF_HitListFrame">
+        <Size x="32" y="32" />
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentIcon" file="interface\icons\Achievement_General_DungeonDiplomat" setAllPoint="true" />
+            </Layer>
+        </Layers>
+        <Scripts>            
+            <OnEnter>                
+                GF_EnterFactionViewButton(self)
+            </OnEnter>
+            <OnLeave>
+                GF_LeaveFactionViewButton()
+            </OnLeave>
+            <OnClick>
+                GF_DisplayFactionView()
+            </OnClick>
+        </Scripts>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="GF_HitListFrame" >
+                <Offset>
+                    <AbsDimension x="208" y="-34" />
+                </Offset>
+            </Anchor>
+        </Anchors>        
+    </Button>
+    
+    <Button name="ConfigButton" parent="GF_HitListFrame">
+        <Size x="32" y="32" />
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentIcon" file="interface\icons\trade_engineering" setAllPoint="true" />
+            </Layer>
+        </Layers>
+        <Scripts>            
+            <OnEnter>
+                GF_EnterConfigButton(self)
+            </OnEnter>
+            <OnLeave>
+                GF_LeaveConfigButton()
+            </OnLeave>
+            <OnClick>
+                GF_ConfigScrollFrame:Show()                
+                GF_FactionViewFrame:Hide()            
+                GF_UIFrame:Hide() 
+                SetPortraitToTexture(GF_HitListFrameSkullnXBonesTexture,"interface\\icons\\trade_engineering")
+            </OnClick>
+        </Scripts>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="GF_HitListFrame" >
+                <Offset>
+                    <AbsDimension x="272" y="-34" />
+                </Offset>
+            </Anchor>
+        </Anchors>        
+    </Button>
+</Ui>

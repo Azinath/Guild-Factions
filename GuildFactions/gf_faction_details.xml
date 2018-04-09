@@ -1,0 +1,2917 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ScrollFrame name="GF_FactionDetailsScrollFrame" inherits="UIPanelScrollFrameTemplate" setallpoints="true" hidden="true" parent="GF_FactionViewFrame">
+		<Size>
+            <AbsDimension x="310" y="235"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="-95"/>
+                </Offset>
+            </Anchor>
+        </Anchors>    
+        <ScrollChild> 
+            <Frame name="GF_FactionDetailsForm">                
+                <Size>
+                  <AbsDimension x="310" y="506" />
+                </Size>
+                <Anchors>
+                  <Anchor point="CENTER" relativeTo="UIParent">
+                    <Offset>
+                      <AbsDimension x="0" y="0" />
+                    </Offset>
+                  </Anchor>
+                </Anchors> 
+                <Scripts>
+                    <OnShow>
+                        GF_FactionDetailsOnShow()
+                    </OnShow>
+                </Scripts>
+                <Frames>
+                  <EditBox name="$parentDescription" enableMouse="true">                    
+                    <Size>
+                      <AbsDimension x="270" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="20" y="-68" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <Button name="$parentCancel" text="Cancel">               
+                    <Size>
+                      <AbsDimension x="100" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="172" y="-462" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Scripts>                        
+                        <OnClick>
+                            GF_FactionDetailsOnShow()
+                        </OnClick>                     
+                    </Scripts>
+                    <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </NormalTexture>
+                    <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </PushedTexture>
+                    <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </DisabledTexture>
+                    <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </HighlightTexture>
+                    <ButtonText name="$parentText">
+                      <FontHeight>
+                        <AbsValue val="10" />
+                      </FontHeight>
+                    </ButtonText>
+                    <NormalFont style="GameFontNormal" />
+                    <HighlightFont style="GameFontHighlight" />
+                    <DisabledFont style="GameFontDisable" />
+                  </Button>
+                  <Button name="$parentSave" text="Save">
+                    <Size>
+                      <AbsDimension x="100" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="33" y="-462" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Scripts>
+                        <OnClick>
+                            GF_FactionDetailsOnSave()
+                        </OnClick>
+                    </Scripts>
+                    <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </NormalTexture>
+                    <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </PushedTexture>
+                    <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </DisabledTexture>
+                    <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+                      <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+                    </HighlightTexture>
+                    <ButtonText name="$parentText">
+                      <FontHeight>
+                        <AbsValue val="10" />
+                      </FontHeight>
+                    </ButtonText>
+                    <NormalFont style="GameFontNormal" />
+                    <HighlightFont style="GameFontHighlight" />
+                    <DisabledFont style="GameFontDisable" />
+                  </Button>
+                  <EditBox name="$parent81" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-244" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <Frame name="$parentLabel5">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-250" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Exhalted" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentLabel4">
+                    <Size>
+                      <AbsDimension x="132" y="18" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="20" y="-204" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Faction Discounts (%)" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="12" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentLabel3">
+                    <Size>
+                      <AbsDimension x="44" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="185" y="-120" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="rep/gold" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <EditBox name="$parentMoneyRepGold" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="42" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="137" y="-120" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <Frame name="$parentLabel2">
+                    <Size>
+                      <AbsDimension x="159" y="18" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="20" y="-96" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Reputation Adjustments" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="12" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="Description">
+                    <Size>
+                      <AbsDimension x="75" y="18" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="20" y="-53" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Description" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="12" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <EditBox name="$parentName" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="143" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="20" y="-23" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <Frame name="$parentLabel1">
+                    <Size>
+                      <AbsDimension x="54" y="18" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="20" y="-9" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Name" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="12" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <EditBox name="$parentRepairsRepGold" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="42" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="137" y="-148" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parentBountyRepGold" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="42" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="137" y="-176" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <Frame name="$parentComponent5">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-276" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Revered" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent6">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-302" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Honored" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent7">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-328" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Friendly" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent8">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-354" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Neutral" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent9">
+                    <Size>
+                      <AbsDimension x="61" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-380" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Unfriendly" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent10">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-406" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Hostile" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent11">
+                    <Size>
+                      <AbsDimension x="45" y="14" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-432" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Hated" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent12">
+                    <Size>
+                      <AbsDimension x="47" y="12" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-228" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Money" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent13">
+                    <Size>
+                      <AbsDimension x="51" y="12" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="153" y="-228" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Repairs" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent14">
+                    <Size>
+                      <AbsDimension x="50" y="12" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="210" y="-228" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Items" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent15">
+                    <Size>
+                      <AbsDimension x="52" y="12" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="258" y="-228" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Bounties" justifyV="TOP" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <EditBox name="$parent71" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-270" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent82" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-244" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent83" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-244" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent84" enableMouse="true">
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-244" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent72" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-270" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent73" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-270" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent74" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-270" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent61" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-296" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent62" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-296" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent63" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-296" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent64" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-296" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent51" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-322" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent52" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-322" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent53" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-322" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent54" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-322" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent41" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-348" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent42" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-348" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent43" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-348" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent44" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-348" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent34" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-374" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent33" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-374" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent32" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-374" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent31" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-374" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent21" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-400" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent22" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-400" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent23" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-400" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent24" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-400" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent11" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="100" y="-426" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent12" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="152" y="-426" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent13" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="204" y="-426" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <EditBox name="$parent14" enableMouse="true">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="37" y="20" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="256" y="-426" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer level="BACKGROUND">
+                        <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="8" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="RIGHT" />
+                          </Anchors>
+                          <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+                        </Texture>
+                        <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+                          <Size>
+                            <AbsDimension x="10" y="20" />
+                          </Size>
+                          <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                            <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+                          </Anchors>
+                          <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+                        </Texture>
+                      </Layer>
+                    </Layers>
+                    <FontString font="Fonts\ARIALN.TTF">
+                      <FontHeight>
+                        <AbsValue val="14" />
+                      </FontHeight>
+                      <Color r="1" g="1" b="1" />
+                      <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                          <AbsDimension x="1" y="-1" />
+                        </Offset>
+                      </Shadow>
+                    </FontString>
+                  </EditBox>
+                  <Frame name="$parentComponent47">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="114" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-120" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Guild Bank Money" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent2">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="44" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="184" y="-148" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="rep/gold" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent4">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="44" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="184" y="-176" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="rep/gold" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent48">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="114" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-148" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Guild Bank Repairs" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                  <Frame name="$parentComponent49">
+                    <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+                    <Size>
+                      <AbsDimension x="114" y="22" />
+                    </Size>
+                    <Anchors>
+                      <Anchor point="TOPLEFT">
+                        <Offset>
+                          <AbsDimension x="23" y="-176" />
+                        </Offset>
+                      </Anchor>
+                    </Anchors>
+                    <Layers>
+                      <Layer>
+                        <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Bounty Claims" justifyH="LEFT">
+                          <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                          </Anchors>
+                          <FontHeight>
+                            <AbsValue val="10" />
+                          </FontHeight>
+                          <Color r="1" g="0.8196079" b="0" />
+                          <Shadow>
+                            <Color r="0" g="0" b="0" />
+                            <Offset>
+                              <AbsDimension x="1" y="-1" />
+                            </Offset>
+                          </Shadow>
+                        </FontString>
+                      </Layer>
+                    </Layers>
+                  </Frame>
+                </Frames>
+              </Frame>
+            </ScrollChild>
+        </ScrollFrame>
+</Ui>
